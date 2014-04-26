@@ -95,6 +95,10 @@ See examples for more information until I've fixed this.
 
 Brickworker does not depend on jQuery or any other lib.
 
+## Alpha Software
+
+Yeah, early dev. Be careful. Contributions welcome!
+
 ## License
 
 MIT
