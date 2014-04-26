@@ -27,7 +27,7 @@
     </style>
   </head>
   <body>
-    <script src="../grid.js"></script>
+    <script src="../brickworker.js"></script>
     <script>
       function generateData(count) {
         var data = [];
@@ -99,7 +99,7 @@
           });
         }
       };
-      var g = new Grid(delegate, {
+      var g = new Brickworker(delegate, {
         waitForAll: true,
         maxColumns: 2
       });
