@@ -74,3 +74,7 @@ it _has_ to implement.
 
   Called when new items was inserted (if you want to animate etc).
 
+## License
+
+MIT
+
