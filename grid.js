@@ -41,7 +41,7 @@ var Grid = (function () {
     this.items = [];
     this.columns = [];
     this.requiredDelegateMethods = [
-      'elementForData',
+      'cellForData',
       'data'
     ];
     this.handlers = {};
