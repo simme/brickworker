@@ -1,12 +1,12 @@
-var Grid = (function () {
+var Brickworker = (function () {
   'use strict';
 
   //
-  // # Grid
+  // # Brickworker
   //
-  // The Grid Constructor.
+  // The Brickworker Constructor.
   //
-  var Grid = function Grid(delegate, options) {
+  var Brickworker = function Brickworker(delegate, options) {
     // Container element
     this.container = document.getElementsByTagName('body')[0];
 
@@ -59,7 +59,7 @@ var Grid = (function () {
   //
   // Loads the first batch of data and renders it. Also binds events.
   //
-  Grid.prototype.init = function gridInit() {
+  Brickworker.prototype.init = function gridInit() {
     // Hook up events
     this.handlers.resize = bindEvent('resize', window, debounce(100, this.resize, this));
     this.handlers.scrolls = bindEvent('scroll', window, throttle(50, this.scroll, this));
@@ -74,7 +74,7 @@ var Grid = (function () {
   //
   // Unbinds handlers. Which makes so that it won't load more data etc.
   //
-  Grid.prototype.deactivate = function gridDeactivate() {
+  Brickworker.prototype.deactivate = function gridDeactivate() {
     for (var i in this.handlers) {
       unbindEvent(i, window, this.handlers[i]);
     }
@@ -86,7 +86,7 @@ var Grid = (function () {
   // When the window is resized figure out if we need to reflow the content
   // and does that if it has to.
   //
-  Grid.prototype.resize = function gridResize() {
+  Brickworker.prototype.resize = function gridResize() {
     var didChange = this.setupColumns();
     if (!didChange) return;
 
@@ -109,7 +109,7 @@ var Grid = (function () {
   //
   // @TODO: Get actual height of body
   //
-  Grid.prototype.scroll = function gridScroll() {
+  Brickworker.prototype.scroll = function gridScroll() {
     if (!this.scrolling) {
       this.scrolling = true;
       this.callDelegate('didStartScroll', this);
@@ -130,7 +130,7 @@ var Grid = (function () {
   //
   // Emits the `didEndScroll` event.
   //
-  Grid.prototype.scrollEnd = function () {
+  Brickworker.prototype.scrollEnd = function () {
     this.scrolling = false;
     this.callDelegate('didEndScroll', this);
   };
@@ -142,7 +142,7 @@ var Grid = (function () {
   //
   // **Returns** false if no layout was needed.
   //
-  Grid.prototype.setupColumns = function gridSetupColumns() {
+  Brickworker.prototype.setupColumns = function gridSetupColumns() {
     var columns = [];
     var c = width(this.container);
     var w = this.elementWidth;
@@ -164,7 +164,7 @@ var Grid = (function () {
   //
   // Asks the delegate for new data.
   //
-  Grid.prototype.loadData = function gridLoad() {
+  Brickworker.prototype.loadData = function gridLoad() {
     if (this.isLoading) return;
 
     var self = this;
@@ -184,7 +184,7 @@ var Grid = (function () {
   //
   // Handles data and inserts it into the grid.
   //
-  Grid.prototype.handleData = function gridHandleData(data, cellsReady) {
+  Brickworker.prototype.handleData = function gridHandleData(data, cellsReady) {
     var items = [];
     var len = data.length;
     var frag = document.createDocumentFragment();
@@ -222,7 +222,7 @@ var Grid = (function () {
   //
   // ## Layout Cells
   //
-  Grid.prototype.layoutCells = function gridLayout(items, fragment) {
+  Brickworker.prototype.layoutCells = function gridLayout(items, fragment) {
     var len = items.length;
     var p = this.paddingLeft;
     var w = this.elementWidth;
@@ -251,7 +251,7 @@ var Grid = (function () {
   //
   // **Returns** index of the shortest column.
   //
-  Grid.prototype.shortestColumn = function gridShortest() {
+  Brickworker.prototype.shortestColumn = function gridShortest() {
     var cols = this.columns;
     var len = cols.length;
     var min = false;
@@ -269,9 +269,9 @@ var Grid = (function () {
   //
   // ## Set Delegate
   //
-  // Sets the delegate object of the Grid layout.
+  // Sets the delegate object of the Brickworker layout.
   //
-  Grid.prototype.setDelegate = function gridSetDelegate(delegate) {
+  Brickworker.prototype.setDelegate = function gridSetDelegate(delegate) {
     if (typeof delegate !== 'object') throw new Error('Invalid delegate');
 
     for (var i in this.requiredDelegateMethods) {
@@ -294,7 +294,7 @@ var Grid = (function () {
   // * **method**, the string name of the delegate method to call.
   // * **args**, additional arguments to pass to the delegate.
   //
-  Grid.prototype.callDelegate = function gridCallDelegate(method) {
+  Brickworker.prototype.callDelegate = function gridCallDelegate(method) {
     var delegateImplements = typeof this.delegate[method] === 'function';
     if (delegateImplements) {
       var args = Array.prototype.slice.call(arguments, 1);
@@ -483,7 +483,7 @@ var Grid = (function () {
     };
   }
 
-  return Grid;
+  return Brickworker;
 
 }());
 
