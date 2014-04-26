@@ -74,6 +74,27 @@ it _has_ to implement.
 
   Called when new items was inserted (if you want to animate etc).
 
+### Setting up the Brickworker
+
+```javascript
+var delegate = // create your delegate
+var options = {
+  container: document.getElemenentById('myContainer'),
+  gutter: 20, // distance between objects
+  wait: 10000, // max time to wait for images to load
+  maxColumns: Infinity, // maximum number of columns to show
+  preloadImages: true, // preload images before inserting into container
+  waitForAll: true // wait for all images in a batch to load before inserting
+}
+var brick = new Brickworker(delegate, options);
+```
+
+See examples for more information until I've fixed this.
+
+## No Dependencies
+
+Brickworker does not depend on jQuery or any other lib.
+
 ## License
 
 MIT
