@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example 1</title>
+    <meta charset="utf-8" />
+    <style>
+      .item {
+        position: absolute;
+        width: 300px;
+        background: #eee;
+        padding: 5px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="../grid.js"></script>
+    <script>
+      function generateData(count) {
+        var data = [];
+        var words = "Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.".split(' ');
+
+        function rand(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function imgURL(width) {
+          var max = 400;
+          var min = 100;
+          var str = "http://placekitten.com/g/";
+          str += width + '/' + rand(min, max);
+          return str;
+        }
+
+        for (var i = 0; i < count; i++) {
+          data.push({
+            title: 'Lorem Ipsum Dolor',
+            content: words.slice(0, rand(20, 30)).join(' '),
+            img: imgURL(300)
+          });
+        }
+
+        return data;
+      };
+
+      var delegate = {
+        cellForData: function (data, element) {
+          var cell = element || document.createElement('div');
+          cell.setAttribute('class', 'item');
+          var img = element ? element.querySelect('img') : document.createElement('img');
+          img.setAttribute('src', data.img);
+          var h1 = element ? element.querySelect('h1') : document.createElement('h1');
+          h1.textContent = data.title;
+          var p = element ? element.querySelect('p') : document.createElement('p');
+          p.textContent = data.content;
+
+          cell.appendChild(img);
+          cell.appendChild(h1);
+          cell.appendChild(p);
+
+          return cell;
+        },
+        didLoadImagesForCell: function (element) {
+          var images = Array.prototype.slice.call(element.querySelectorAll('img'), 0);
+          images.forEach(function (img) {
+            var i = new Image();
+            i.src = img.getAttribute('src');
+            img.setAttribute('width', i.width);
+            img.setAttribute('height', i.height);
+
+          });
+        },
+        data: function (fn) {
+          fn(generateData(20));
+        },
+        didStartScroll: function () {
+          //console.log('started scrolling');
+        },
+        didEndScroll: function () {
+          //console.log('ended scrolling');
+        }
+      };
+      var g = new Grid(delegate, { waitForAll: false });
+      g.init();
+    </script>
+  </body>
+</html>
+
