@@ -14,7 +14,7 @@
     </style>
   </head>
   <body>
-    <script src="../grid.js"></script>
+    <script src="../brickworker.js"></script>
     <script>
       function generateData(count) {
         var data = [];
@@ -80,7 +80,7 @@
           //console.log('ended scrolling');
         }
       };
-      var g = new Grid(delegate, { waitForAll: false });
+      var g = new Brickworker(delegate, { waitForAll: false });
       g.init();
     </script>
   </body>
