@@ -240,6 +240,7 @@ var Grid = (function () {
 
     if (fragment) {
       this.container.appendChild(fragment);
+      this.callDelegate('didInsertPosts', items);
     }
   };
 
