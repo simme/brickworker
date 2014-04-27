@@ -1,0 +1,29 @@
+{
+  "name": "brickworker",
+  "version": "0.0.0",
+  "description": "Lays the bricks that are DOM elements in neat arrangements.",
+  "main": "brickworker.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/simme/brickworker.git"
+  },
+  "keywords": [
+    "dom",
+    "pinterest",
+    "layout",
+    "grid",
+    "browser"
+  ],
+  "author": "Simon Ljungberg <hi@iamsim.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simme/brickworker/issues"
+  },
+  "homepage": "https://github.com/simme/brickworker"
+}
