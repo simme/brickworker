@@ -1,4 +1,14 @@
-var Brickworker = (function () {
+(function (factory, root) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  }
+  else if (typeof define === 'function' && define.amd) {
+    define(factory);
+  }
+  else {
+    root.Brickworker = factory();
+  }
+}(function () {
   'use strict';
 
   //
@@ -485,5 +495,5 @@ var Brickworker = (function () {
 
   return Brickworker;
 
-}());
+}, this));
 
